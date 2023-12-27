@@ -2,7 +2,7 @@
 import request from './http.js';
 
 const WebAPI = "https://form.hrflag.com/WebAPI/";
-const WebAPITest = "http://192.168.1.119:5000/";
+const WebAPITest = "http://116.62.189.123:5000/";
 
 
 const API = {
