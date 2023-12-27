@@ -1,0 +1,23 @@
+{
+  "id": "4390258",
+  "name": "AIWeb",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "AI智能平台",
+  "glyphs": [
+    {
+      "icon_id": "37001704",
+      "name": "晴",
+      "font_class": "a-ziyuan11",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "37001711",
+      "name": "月",
+      "font_class": "a-ziyuan19",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    }
+  ]
+}
