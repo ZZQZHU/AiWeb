@@ -74,6 +74,7 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import "../assets/fonts/iconfont.css";
+import API from "../axios/api";
 const bgcolor = ref(true);
 
 const form = reactive({
@@ -82,7 +83,12 @@ const form = reactive({
   remember: false,
 });
 const onSubmit = () => {
-  console.log("submit!");
+  console.log("submit!",form.name,form.password);
+  API.UserLogin('api/login/gologin',{username:form.name,password:form.password}).then(res=>{
+    console.log(res);
+  }).catch(err=>{
+    console.log(err);
+  })
 };
 </script>
 
