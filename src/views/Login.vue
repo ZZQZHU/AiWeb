@@ -6,22 +6,13 @@
         <span class="toptitle">造梦星球AI智能平台</span>
       </div>
       <div class="topright enter-x">
-        <el-switch
-          v-model="bgcolor"
-          class="mt-2"
-          size="large"
-          style="--el-switch-on-color: #151515; --el-switch-off-color: #151515"
-          inline-prompt
-        >
+        <el-switch v-model="bgcolor" class="mt-2" size="large"
+          style="--el-switch-on-color: #151515; --el-switch-off-color: #151515" inline-prompt>
           <template #active-action>
-            <span class="custom-active-action"
-              ><i class="iconfont icon-a-ziyuan11"></i
-            ></span>
+            <span class="custom-active-action"><i class="iconfont icon-a-ziyuan11"></i></span>
           </template>
           <template #inactive-action>
-            <span class="custom-inactive-action"
-              ><i class="iconfont icon-a-ziyuan19"></i
-            ></span>
+            <span class="custom-inactive-action"><i class="iconfont icon-a-ziyuan19"></i></span>
           </template>
         </el-switch>
       </div>
@@ -31,9 +22,7 @@
           <div class="containleftimgbox -enter-x">
             <img src="../assets/loginlogo.svg" alt="" />
           </div>
-          <span class="containtitle -enter-x"
-            >助力创业，打开思维的AI智能平台</span
-          >
+          <span class="containtitle -enter-x">助力创业，打开思维的AI智能平台</span>
           <span class="containtip -enter-x">快速开始一段造梦之旅</span>
         </div>
         <div class="containright enter-x">
@@ -46,17 +35,12 @@
                 <el-input v-model="form.name" placeholder="账号" />
               </el-form-item>
               <el-form-item class="enter-x">
-                <el-input
-                  v-model="form.password"
-                  type="password"
-                  placeholder="密码"
-                  show-password
-                />
+                <el-input v-model="form.password" type="password" placeholder="密码" show-password />
               </el-form-item>
 
               <div class="formline enter-x">
                 <el-form-item class="enter-x">
-                    <el-checkbox v-model="form.remember" label="记住我" name="type" />
+                  <el-checkbox v-model="form.remember" label="记住我" name="type" />
                 </el-form-item>
                 <span class="enter-x">忘记密码？</span>
               </div>
@@ -74,8 +58,13 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import "../assets/fonts/iconfont.css";
-import API from "../axios/api";
+import API from "../axios/api.ts";
+import router from "../router";
+import { ElMessage } from 'element-plus';
 const bgcolor = ref(true);
+import { useDataStore } from '../store/index.ts';
+const dataStore = useDataStore()
+
 
 const form = reactive({
   name: "",
@@ -83,10 +72,19 @@ const form = reactive({
   remember: false,
 });
 const onSubmit = () => {
-  console.log("submit!",form.name,form.password);
-  API.UserLogin('api/login/gologin',{username:form.name,password:form.password}).then(res=>{
+  console.log("submit!", form.name, form.password);
+  API.UserLogin('api/login/gologin', { username: form.name, password: form.password }).then(res => {
     console.log(res);
-  }).catch(err=>{
+    if (res.data) {
+      dataStore.setCookie("Token", res.data.token, 1);
+      dataStore.setCookie("refreshToken", res.data.refreshToken, 24);
+      router.push('/')
+
+    } else {
+      ElMessage.error('账号密码错误嗷');
+    }
+
+  }).catch(err => {
     console.log(err);
   })
 };
@@ -111,9 +109,11 @@ const onSubmit = () => {
   background-position: 100%;
   background-size: auto 100%;
 }
+
 .bloginbox {
   background-color: #293146;
 }
+
 .bloginbox::before {
   background-image: url("../assets/bg-back.svg");
 }
@@ -144,6 +144,7 @@ const onSubmit = () => {
   top: 20px;
   right: 60px;
 }
+
 .totalcontain {
   display: flex;
   position: absolute;
@@ -233,6 +234,7 @@ const onSubmit = () => {
   color: #0960bd;
   flex-shrink: 0;
 }
+
 .maxbox {
   max-width: 1280px;
   height: 100%;
@@ -243,6 +245,7 @@ const onSubmit = () => {
 :deep(.el-switch__core .el-switch__inner .is-icon) {
   font-size: 22px;
 }
+
 :deep(.el-switch--large .el-switch__core) {
   box-shadow: 1px 1px 2px 2px #cfcfcf;
 }
@@ -263,18 +266,21 @@ const onSubmit = () => {
   animation-fill-mode: forwards;
   animation-delay: 0.1s;
 }
+
 .-enter-x:nth-child(1) {
   opacity: 0;
   animation: enter-x-animation 0.4s ease-in-out 0.3s;
   animation-fill-mode: forwards;
   animation-delay: 0.1s;
 }
+
 .enter-x:nth-child(2) {
   opacity: 0;
   animation: enter-x-animation 0.4s ease-in-out 0.3s;
   animation-fill-mode: forwards;
   animation-delay: 0.2s;
 }
+
 .-enter-x:nth-child(2) {
   opacity: 0;
   animation: enter-x-animation 0.4s ease-in-out 0.3s;
@@ -288,6 +294,7 @@ const onSubmit = () => {
   animation-fill-mode: forwards;
   animation-delay: 0.3s;
 }
+
 .-enter-x:nth-child(3) {
   opacity: 0;
   animation: enter-x-animation 0.4s ease-in-out 0.3s;
@@ -315,9 +322,11 @@ const onSubmit = () => {
     transform: translateY(0);
   }
 }
+
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
@@ -328,31 +337,40 @@ const onSubmit = () => {
     height: 100vh;
     background-color: #0960bd;
   }
+
   .bloginbox {
-  background-color: #293146;
+    background-color: #293146;
   }
+
   .loginbox:before,
   .bloginbox:before {
     background-image: none;
   }
+
   .maxbox {
     max-width: 100%;
   }
-  .topleft{
+
+  .topleft {
     left: 5%;
   }
-  .topright{
+
+  .topright {
     right: 5%;
   }
+
   .totalcontain {
     width: 100%;
   }
+
   .-enter-x.containleft {
     display: none;
   }
+
   .containright {
     width: 100%;
   }
+
   .formbox {
     width: 90%;
   }
