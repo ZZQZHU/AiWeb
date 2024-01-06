@@ -11,6 +11,10 @@ const routes: Array<RouteRecordRaw> = [
         path: '/login',
         component: () => import('../views/Login.vue'),
     },
+    {
+        path: '/blog',
+        component: () => import('../views/blog.vue'),
+    },
 ];
 
 const router = createRouter({
@@ -27,7 +31,8 @@ router.beforeEach((to, _, next) => {
         if (to.path === "/login") {
             next()
         } else {
-            next('/login')
+            next()
+            // next('/login')
         }
     }
 })
