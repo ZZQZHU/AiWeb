@@ -1,4 +1,5 @@
 <template>
+    <Navigation :mainid="0" />
     <div id="main" class="markdow-page">
         <div class="grid-wapper">
             <div class="grid-view">
@@ -46,6 +47,9 @@ import zhHans from 'bytemd/locales/zh_Hans.json'
 import 'bytemd/dist/index.css'
 import 'juejin-markdown-themes/dist/juejin.min.css' // 掘金同款样式
 import { findIndex } from 'lodash'
+
+import Navigation from '../components/mainheader.vue';
+
 
 const pluginsList = [gfm(), gemoji(), highlight(), frontmatter(), mediumZoom(), breaks()]
 /*
@@ -226,6 +230,7 @@ const updateVisibleItems = () => {
     width: 100%;
     height: 100vh;
     display: flex;
+    padding-top: 100px;
     justify-content: space-between;
 
     :deep() {
@@ -252,9 +257,10 @@ const updateVisibleItems = () => {
 }
 
 .rightbox {
-    width: 300px;
-    height: 100vh;
+    width: 260px;
+    // height: 100vh;
     position: fixed;
+    top: 100px;
     right: 0;
 
     .rightitem {

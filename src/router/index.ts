@@ -5,7 +5,7 @@ import { useDataStore } from '../store/index.ts';
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
-        component: () => import('../views/index.vue'),
+        component: () => import('../views/home.vue'),
     },
     {
         path: '/login',
@@ -14,6 +14,39 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/blog',
         component: () => import('../views/blog.vue'),
+    },
+    {
+        path: '/home',
+        component: () => import('../views/home.vue'),
+    },
+    {
+        path: '/ai',
+        component: () => import('../views/AI.vue'),
+    },
+    {
+        path: '/finance',
+        component: () => import('../views/finance.vue'),
+    },
+    {
+        path: '/developer',
+        component: () => import('../views/developer.vue'),
+    },
+    {
+        path: '/publish',
+        component: () => import('../views/publish.vue'),
+    },
+    {
+        path: '/notification',
+        component: () => import('../views/notification.vue'),
+    },
+    {
+        path: '/vip',
+        component: () => import('../views/vip.vue'),
+    },
+
+    {
+        path: '/test',
+        component: () => import('../components/mainheader.vue'),
     },
 ];
 

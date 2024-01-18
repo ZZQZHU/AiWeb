@@ -6,6 +6,34 @@
   "description": "AI智能平台",
   "glyphs": [
     {
+      "icon_id": "4175511",
+      "name": "下箭头",
+      "font_class": "xiajiantou",
+      "unicode": "eb6d",
+      "unicode_decimal": 60269
+    },
+    {
+      "icon_id": "4922129",
+      "name": "搜索",
+      "font_class": "search",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "5444335",
+      "name": "通知",
+      "font_class": "tongzhi",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "10583159",
+      "name": "会员",
+      "font_class": "huiyuan",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
       "icon_id": "37001704",
       "name": "晴",
       "font_class": "a-ziyuan11",
