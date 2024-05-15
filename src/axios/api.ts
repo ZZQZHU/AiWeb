@@ -4,8 +4,8 @@ import apiWithToken from './apiWithToken.ts';
 import { AxiosError } from 'axios';
 import { ElMessage } from 'element-plus';
 
-const WebAPI = "http://127.0.0.1:5000/";
-// const WebAPI = "http://116.62.189.123:5000/";
+// const WebAPI = "http://127.0.0.1:5000/";
+const WebAPI = "https://backsys.aiblog.top/";
 
 
 const request = (method: string, url: string, WithToken: boolean, params?: any) => {
@@ -94,6 +94,9 @@ const API = {
     return http.get(url, param);
   },
   UploadImage(url: string, param: any) { //上传图片
+    return http.post(url, param);
+  },
+  changepreserve(url: string, param: any) { //上传图片
     return http.post(url, param);
   }
 };

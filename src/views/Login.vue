@@ -2,7 +2,7 @@
   <div class="loginbox" :class="bgcolor ? '' : 'bloginbox'">
     <div class="maxbox">
       <div class="topleft -enter-x">
-        <img src="../assets/logo.png" alt="" />
+        <img src="../assets/logo.svg" alt="" />
         <span class="toptitle">造梦星球AI智能平台</span>
       </div>
       <div class="topright enter-x">
@@ -22,7 +22,7 @@
           <div class="containleftimgbox -enter-x">
             <img src="../assets/loginlogo.svg" alt="" />
           </div>
-          <span class="containtitle -enter-x">助力创业，打开思维的AI智能平台</span>
+          <span class="containtitle -enter-x">助力梦想，打开思维的AI智能平台</span>
           <span class="containtip -enter-x">快速开始一段造梦之旅</span>
         </div>
         <div class="containright enter-x">
@@ -180,6 +180,7 @@ const onSubmit = () => {
 .containright {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 50%;
 }
 

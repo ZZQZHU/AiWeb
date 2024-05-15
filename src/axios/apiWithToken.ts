@@ -5,7 +5,7 @@ import { useDataStore } from '../store/index.ts';
 const dataStore = useDataStore()
 
 const instance = axios.create({
-  baseURL: 'http://116.62.189.123:5000/',
+  baseURL: 'https://backsys.aiblog.top/',
 });
 
 // 请求拦截器

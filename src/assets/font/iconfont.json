@@ -1,0 +1,156 @@
+{
+  "id": "4515385",
+  "name": "HRflagai",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "13311558",
+      "name": "关闭",
+      "font_class": "guanbi",
+      "unicode": "e7b4",
+      "unicode_decimal": 59316
+    },
+    {
+      "icon_id": "7587754",
+      "name": "文件",
+      "font_class": "wenjian",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "18613389",
+      "name": "Excel",
+      "font_class": "Excel",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "18613390",
+      "name": "ppt",
+      "font_class": "ppt",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "18613391",
+      "name": "HTML",
+      "font_class": "HTML",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "18613392",
+      "name": "PDF",
+      "font_class": "PDF",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "18613394",
+      "name": "TXT",
+      "font_class": "TXT",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "18613395",
+      "name": "XML",
+      "font_class": "XML",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "18613396",
+      "name": "word",
+      "font_class": "word",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "18613490",
+      "name": "PPT",
+      "font_class": "PPT",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "18613491",
+      "name": "XML",
+      "font_class": "XML1",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "18613492",
+      "name": "PAGE",
+      "font_class": "PAGE",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "18613493",
+      "name": "Txt",
+      "font_class": "T",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "18613494",
+      "name": "Word",
+      "font_class": "W",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "18613495",
+      "name": "Html",
+      "font_class": "H",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "18614116",
+      "name": "Excel",
+      "font_class": "Ex",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "37726335",
+      "name": "Excel",
+      "font_class": "Excel1",
+      "unicode": "e87a",
+      "unicode_decimal": 59514
+    },
+    {
+      "icon_id": "37726340",
+      "name": "Word",
+      "font_class": "Word",
+      "unicode": "e87b",
+      "unicode_decimal": 59515
+    },
+    {
+      "icon_id": "11356544",
+      "name": "历史会话",
+      "font_class": "lishihuihua",
+      "unicode": "e686",
+      "unicode_decimal": 59014
+    },
+    {
+      "icon_id": "13135771",
+      "name": "发送消息",
+      "font_class": "fasongxiaoxi",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "38441573",
+      "name": "上传文件-线",
+      "font_class": "shangchuanwenjian-xian",
+      "unicode": "e7a3",
+      "unicode_decimal": 59299
+    }
+  ]
+}

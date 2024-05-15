@@ -43,6 +43,10 @@ const routes: Array<RouteRecordRaw> = [
         path: '/vip',
         component: () => import('../views/vip.vue'),
     },
+    {
+        path: '/chat',
+        component: () => import('../views/chatstreammd.vue'),
+    },
 
     {
         path: '/test',

@@ -1,0 +1,101 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4515385 */
+  /* Color fonts */
+  src: 
+       url('iconfont.woff2?t=1713767290451') format('woff2'),
+       url('iconfont.woff?t=1713767290451') format('woff'),
+       url('iconfont.ttf?t=1713767290451') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-guanbi:before {
+  content: "\e7b4";
+}
+
+.icon-wenjian:before {
+  content: "\e60a";
+}
+
+.icon-Excel:before {
+  content: "\e61b";
+}
+
+.icon-ppt:before {
+  content: "\e61c";
+}
+
+.icon-HTML:before {
+  content: "\e61d";
+}
+
+.icon-PDF:before {
+  content: "\e61e";
+}
+
+.icon-TXT:before {
+  content: "\e61f";
+}
+
+.icon-XML:before {
+  content: "\e620";
+}
+
+.icon-word:before {
+  content: "\e621";
+}
+
+.icon-PPT:before {
+  content: "\e622";
+}
+
+.icon-XML1:before {
+  content: "\e623";
+}
+
+.icon-PAGE:before {
+  content: "\e624";
+}
+
+.icon-T:before {
+  content: "\e625";
+}
+
+.icon-W:before {
+  content: "\e626";
+}
+
+.icon-H:before {
+  content: "\e627";
+}
+
+.icon-Ex:before {
+  content: "\e628";
+}
+
+.icon-Excel1:before {
+  content: "\e87a";
+}
+
+.icon-Word:before {
+  content: "\e87b";
+}
+
+.icon-lishihuihua:before {
+  content: "\e686";
+}
+
+.icon-fasongxiaoxi:before {
+  content: "\e607";
+}
+
+.icon-shangchuanwenjian-xian:before {
+  content: "\e7a3";
+}
+

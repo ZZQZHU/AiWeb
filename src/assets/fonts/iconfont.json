@@ -6,6 +6,20 @@
   "description": "AI智能平台",
   "glyphs": [
     {
+      "icon_id": "16921554",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e7ea",
+      "unicode_decimal": 59370
+    },
+    {
+      "icon_id": "6268314",
+      "name": "添加",
+      "font_class": "tianjia",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
       "icon_id": "4175511",
       "name": "下箭头",
       "font_class": "xiajiantou",

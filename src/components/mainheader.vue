@@ -2,13 +2,10 @@
     <div class="main-header">
         <div class="logo">
             <router-link to="/home" class="logolink">
-                <img class="logo-img"
-                    src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e08da34488b114bd4c665ba2fa520a31.svg"
-                    alt="LOGO" />
+                <img class="logo-img" src="../assets/logo.svg" alt="LOGO" />
+                <div class="logotitle">AI博客园</div>
 
-                <img class="mobile-img"
-                    src="https:////lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/6c61ae65d1c41ae8221a670fa32d05aa.svg"
-                    alt="LOGO" />
+                <img class="mobile-img" src="../assets/logo.svg" alt="LOGO" />
             </router-link>
 
         </div>
@@ -17,7 +14,8 @@
             <ul class="nav-list">
                 <li class="main-nav-list">
                     <div class="phone-show-menu isResourceVisible" @click="toggleMenu">
-                        <span v-if="Props.mainid > 0" class="selectedspan">{{ categories[Props.mainid - 1].name }}</span>
+                        <span v-if="Props.mainid > 0" class="selectedspan">{{ categories[Props.mainid - 1].name
+                            }}</span>
                         <span v-else>首页</span>
                         <i class="iconfont icon-xiajiantou unfold16-icon" :class="{ 'active': isMenuActive }"></i>
 
@@ -258,16 +256,25 @@ li {
     .logolink {
         display: flex;
         align-items: center;
+        text-decoration: none;
     }
 }
 
 .logo-img {
-    width: 107px;
-    height: 22px;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
 }
 
 .mobile-img {
     display: none;
+}
+
+.logotitle {
+    font-size: 20px;
+    font-weight: 500;
+    color: #515767;
+    text-decoration: none;
 }
 
 .main-nav {
@@ -753,7 +760,8 @@ img.avatar:hover {
         padding-right: 0;
     }
 
-    .logo-img {
+    .logo-img,
+    .logotitle {
         display: none;
     }
 
@@ -812,11 +820,12 @@ img.avatar:hover {
 }
 
 @media screen and (max-width:365px) {
-    .main-nav .right-side-nav .notification .jj-noti-link{
-        padding: 0  0px 0 5px;
+    .main-nav .right-side-nav .notification .jj-noti-link {
+        padding: 0 0px 0 5px;
         width: 20px;
     }
-    .main-nav .right-side-nav .notification .jj-noti-link .notification-icon{
+
+    .main-nav .right-side-nav .notification .jj-noti-link .notification-icon {
         font-size: 22px;
     }
 }
