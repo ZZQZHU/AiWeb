@@ -5,6 +5,7 @@ import { AxiosError } from 'axios';
 import { ElMessage } from 'element-plus';
 
 // const WebAPI = "http://127.0.0.1:5000/";
+// const WebAPI = "http://192.168.178.1:5000/";
 const WebAPI = "https://backsys.aiblog.top/";
 
 
@@ -83,7 +84,7 @@ const http = {
   get: (url: string, params: any) => request('GET', url, false, params),
   getwithToken: (url: string, params: any) => request('GET', url, true, params),
   post: (url: string, params: any) => request('POST', url, false, params),
-  postwithToken: (url: string, params: any) => request('POST', url, false, params),
+  postwithToken: (url: string, params: any) => request('POST', url, true, params),
 };
 
 
@@ -98,7 +99,19 @@ const API = {
   },
   changepreserve(url: string, param: any) { //上传图片
     return http.post(url, param);
-  }
+  },
+  WxLoginimg(url: string, param: any) {   //获取微信小程序码
+    return http.post(url, param);
+  },
+  PublishBlog(url: string, param: any) {  //发布博文
+    return http.postwithToken(url, param);
+  },
+  Getbloginfo(url: string, param: any) { //获取博文信息
+    return http.post(url, param);
+  },
+  GetBlogList(url: string, param: any) { //获取博文列表
+    return http.post(url, param);
+  },
 };
 
 export default API;

@@ -1,79 +1,147 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.temHeader {
+  grid-area: temHeader;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+.temHeader .temHeaderitem{
+  width: 100%;
+  height: 100%;
 }
-a:hover {
-  color: #535bf2;
+.temmainbody {
+  grid-area: temmainbody;
 }
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.temtopnav{
+  grid-area: temtopnav;
+  display: none;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.temtopnav .temtopitem{
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.temleftnav {
+  grid-area: temleftnav;
+  display: block;
+  position: fixed;
 }
-button:hover {
-  border-color: #646cff;
+.temleftnav .temleftitem{
+  background-color: #fff;
+  margin-top: 20px;
+  width: 180px;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.temleftnav .temleftitem:first-child{
+  margin-top: 0;
+}
+.temcontainbody {
+  grid-area: temcontainbody;
+}
+.temcontainbody .temcontainitem{
+  width: 100%;
+  background-color: #fff;
 }
 
-.card {
-  padding: 2em;
+.temrightbox {
+  grid-area: temrightbox;
+}
+.temrightbox .temrightitem{
+  width: 100%;
+  background-color: #fff;
+  margin-top: 20px;
+}
+.temrightbox .temrightitem:first-child{
+  margin-top: 0;
+}
+.temrightbox .temrightitem:nth-child(2){
+  position: sticky;
+  top: 100px;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  
+
+.temtotal {
+  display: grid;
+  grid-template-areas:
+      "temHeader temHeader temHeader"
+      ". . ."
+      ". temmainbody .";
+  grid-template-columns: 1fr minmax(1000px,1200px) 1fr;
+  grid-template-rows: 80px 20px 1fr;
+  height: 100vh;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.temmainbody{
+  display: grid;
+  grid-template-areas: "temleftnav temcontainbody temrightbox";
+  grid-template-columns: 180px 1fr 260px;
+  grid-template-rows: 1fr;
+  row-gap: 20px;
+  column-gap: 20px;
+  height: 100%;
+}
+
+
+
+@media screen and (max-width: 1200px){
+  .temtopnav{
+    display: block;
   }
-  a:hover {
-    color: #747bff;
+  .temleftnav{
+    display: none;
   }
-  button {
-    background-color: #f9f9f9;
+  .temtotal{
+    grid-template-areas:
+    "temHeader temHeader temHeader temHeader temHeader"
+    "temmainbody temmainbody temmainbody temmainbody temmainbody";
+    grid-template-columns: 1fr 180px minmax(0, 760px) 1fr 1fr;
+    grid-template-rows: 80px 1fr;
+    height: 100vh;
+  }
+  .temmainbody{
+    grid-template-areas: 
+    "temtopnav temtopnav temtopnav temtopnav"
+    ". temcontainbody temrightbox .";
+    grid-template-columns: 1fr minmax(0, 760px) 260px 1fr;
+    grid-template-rows: 40px 1fr;
+    row-gap: 20px;
+    height: 100%;
   }
 }
+
+@media screen and (max-width: 1000px){
+  .temrightbox{
+    display: none;
+  }
+  .temtotal{
+    grid-template-areas:
+    "temHeader temHeader temHeader temHeader"
+    "temmainbody temmainbody temmainbody temmainbody";
+    grid-template-columns: 1fr 180px minmax(0, 760px) 1fr;
+    grid-template-rows: 80px 1fr;
+    column-gap: 20px;
+    height: 100vh;
+  }
+  .temmainbody{
+    grid-template-areas: 
+    "temtopnav temtopnav temtopnav"
+    ". temcontainbody .";
+    grid-template-columns: 1fr minmax(0, 960px) 1fr;
+    grid-template-rows: 40px 1fr;
+    row-gap: 20px;
+    column-gap:20px;
+    height: 100%;
+  }
+  
+}
+@media  screen and (max-width: 760px){ 
+  .temtotal{
+    grid-template-rows: 60px 1fr;
+  }
+
+
+  
+}
+
+
+
+
+
+

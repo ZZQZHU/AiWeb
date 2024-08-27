@@ -4,9 +4,7 @@
       <el-input class="title-input" v-model="blogtitle" placeholder="输入文章标题..." />
       <div class="topright">
         <el-button class="btn" type="primary" @click.stop="publish()">发布</el-button>
-        <img class="avatar"
-          src="https://png.pngtree.com/png-clipart/20220404/original/pngtree-d-rendering-male-character-profile-or-avatar-happy-young-man-with-png-image_7512919.png"
-          alt="" srcset="">
+        <img class="useravatar" src="https://static.aiblog.top/WX/imgs/boy.svg" alt="" srcset="">
       </div>
 
 
@@ -104,7 +102,8 @@ import { ElNotification } from 'element-plus';
 
 
 import API from "../axios/api.ts";
-import { ta } from "element-plus/es/locales.mjs";
+import router from "../router";
+
 
 // 内容控件所支持的特殊功能插件列表，如：支持代码高亮、图片优化等。
 const pluginsList = [
@@ -118,6 +117,11 @@ const pluginsList = [
 ];
 
 const panelshow = ref(false);
+const blogid = router.currentRoute.value.params.id;
+
+
+
+
 const typeid = ref(0);
 const tagstr = ref("");
 const tagoptions = ref([
@@ -445,12 +449,29 @@ const surePubilsh = () => {
     summary: summary.value,
     type: typeid.value,
     tag: tagstr.value[0],
-    img: imgstr.value
+    img: imgstr.value,
+    blogid: blogid
   };
   console.log(blogData);
-  return;
-  API.PublishBlog('api/blog/publish', blogData).then(res => {
+  API.PublishBlog('api/upload/uploadblog', blogData).then(res => {
     console.log(res);
+    if (res.data) {
+      ElNotification({
+        type: "success",
+        message: "发布成功",
+        duration: 1500
+      })
+      panelshow.value = false;
+      router.push({ name: 'home' })
+
+    } else {
+      ElNotification({
+        type: "error",
+        message: "发布失败",
+        duration: 1500
+      })
+    }
+
   }).catch(err => {
     console.error(err);
     throw err;
@@ -532,7 +553,12 @@ const handleOutsideClick = (event) => {
 }
 
 
-
+img.useravatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: solid 2px #3f8ddc;
+}
 
 img.avatar {
   --s: 50px;

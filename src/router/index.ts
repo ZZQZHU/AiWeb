@@ -6,46 +6,85 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         component: () => import('../views/home.vue'),
+        meta: { keepAlive: true }
     },
     {
         path: '/login',
+        name: 'login',
         component: () => import('../views/Login.vue'),
     },
     {
-        path: '/blog',
+        path: '/blog/:id',
+        name: 'blog',
         component: () => import('../views/blog.vue'),
     },
     {
+        path: '/blog2/:id',
+        name: 'blog2',
+        component: () => import('../views/blogold.vue'),
+    },
+    {
         path: '/home',
+        name: 'home',
         component: () => import('../views/home.vue'),
+        meta: { keepAlive: true }
     },
     {
         path: '/ai',
+        name: 'ai',
         component: () => import('../views/AI.vue'),
+        meta: { keepAlive: true }
+    },
+    {
+        path: '/aibot',
+        name: 'aibot',
+        component: () => import('../views/Aibot.vue'),
+        meta: { keepAlive: true }
     },
     {
         path: '/finance',
+        name: 'finance',
         component: () => import('../views/finance.vue'),
+        meta: { keepAlive: true }
     },
     {
         path: '/developer',
+        name: 'developer',
         component: () => import('../views/developer.vue'),
+        meta: { keepAlive: true }
     },
     {
-        path: '/publish',
+        path: '/publish/:id',
+        name: 'publish',
         component: () => import('../views/publish.vue'),
     },
     {
         path: '/notification',
+        name: 'notification',
         component: () => import('../views/notification.vue'),
     },
     {
         path: '/vip',
+        name: 'vip',
         component: () => import('../views/vip.vue'),
     },
     {
         path: '/chat',
-        component: () => import('../views/chatstreammd.vue'),
+        name: 'chat',
+        component: () => import('../views/chatstreammdKIMI.vue'),
+        meta: { keepAlive: true }
+    },
+    // 带参数的路由
+    {
+        path: '/dify/:id',
+        name: 'dify',
+        component: () => import('../views/dify.vue'),
+        meta: { keepAlive: true }
+    },
+    {
+        path: '/tem',
+        name: 'tem',
+        component: () => import('../views/tem.vue'),
     },
 
     {

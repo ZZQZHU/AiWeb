@@ -3,12 +3,13 @@ import { createPinia, defineStore } from 'pinia';
 
 const pinia = createPinia();
 
-// const domain = 'localhost';//本地开发环境
-const domain = '116.62.189.123';
+const domain = 'localhost';//本地开发环境
+// const domain = 'aiblog.top';
 
 export const useDataStore = defineStore('dataStore', {
   state: () => ({
     count: 999,
+    isVisible: false,
   }),
   actions: {
     setCookie(name: string, value: string, hours: number) { // 设置cookie
@@ -30,6 +31,15 @@ export const useDataStore = defineStore('dataStore', {
       const arr = document.cookie.match(reg);
       return arr ? arr[2] : null;
     },
+    showModal() {
+      console.log(2111)
+      this.isVisible = true
+    },
+    closeModal() {
+      console.log(111)
+      this.isVisible = false
+    }
+
   },
   getters: {},
 });

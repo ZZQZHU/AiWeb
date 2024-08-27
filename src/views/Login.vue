@@ -28,26 +28,43 @@
         <div class="containright enter-x">
           <div class="formbox enter-x">
             <div class="formtop enter-x">
-              <span class="enter-x">登录</span>
+              <div class="enter-x topitem" @click="changelogin()" :class="LoginType == 1 ? 'topitemed' : ''">
+                <div class="toptext">微信登录</div>
+
+              </div>
+              <div class="enter-x topitem" @click="changelogin()" :class="LoginType == 2 ? 'topitemed' : ''">
+                <div class="toptext">账号登录</div>
+              </div>
+
             </div>
-            <el-form :model="form" class="enter-x">
-              <el-form-item class="enter-x">
-                <el-input v-model="form.name" placeholder="账号" />
+            <el-form :model="form" v-show="LoginType == 2">
+              <el-form-item>
+                <el-input v-model="form.name" placeholder="账号名" />
               </el-form-item>
-              <el-form-item class="enter-x">
+              <el-form-item>
+                <el-input v-model="form.email" placeholder="邮箱" />
+              </el-form-item>
+              <el-form-item>
                 <el-input v-model="form.password" type="password" placeholder="密码" show-password />
               </el-form-item>
 
-              <div class="formline enter-x">
-                <el-form-item class="enter-x">
+              <div class="formline">
+                <el-form-item>
                   <el-checkbox v-model="form.remember" label="记住我" name="type" />
                 </el-form-item>
-                <span class="enter-x">忘记密码？</span>
+                <!-- <span class="enter-x">忘记密码？</span> -->
               </div>
-              <el-form-item class="enter-x">
+              <el-form-item>
                 <el-button type="primary" @click="onSubmit">登录</el-button>
               </el-form-item>
             </el-form>
+
+            <div class="wxLogin enter-x" v-show="LoginType == 1" v-loading="loading">
+              <img class="loginimg" v-if="WxLoginimg" :src="WxLoginimg" alt="" srcset="">
+              <div class="tiptext" v-if="overtime" @click="getWxImg()">
+                刷新
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -56,28 +73,122 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { reactive, ref, onMounted } from "vue";
 import "../assets/fonts/iconfont.css";
 import API from "../axios/api.ts";
 import router from "../router";
 import { ElMessage } from 'element-plus';
-const bgcolor = ref(true);
+// import socket from '../services/socket.ts';   //socket.io版
+const ws = ref<any>(null);    //websocket版
+import axios from 'axios';
+const bgcolor = ref(false);
 import { useDataStore } from '../store/index.ts';
 const dataStore = useDataStore()
+const overtime = ref(false);
 
+const LoginType = ref(1); // 1为微信登录，2为账号登录
+const WxLoginimg = ref("");
+const loading = ref(true);
+
+onMounted(async () => {
+  const Token = dataStore.getCookie("Token");
+  const refreshToken = dataStore.getCookie("refreshToken");
+  if (Token && refreshToken) {
+    router.push('/')
+  }
+  getWxImg()  // 获取微信二维码
+
+})
+
+const getWxImg = async () => {
+  overtime.value = false;
+  // 生成一个随机数 randomStr 限制在24位  前面固定AI  带时间戳 用于刷新二维码
+  const random = Math.random().toString(36).substr(2);
+  const time = new Date().getTime();
+  let randomStr = 'AI' + time + random;
+  // 截取randomStr前20位
+  randomStr = randomStr.substr(0, 25);
+  console.log(randomStr);
+  let params = {
+    scene: randomStr,
+    page: 'pages/login/login'
+  }
+
+  const response = await axios.post("https://backsys.aiblog.top/wxapi/wxlogin/getwxacode", params, {
+    headers: { 'Content-Type': 'application/json' },
+    responseType: 'arraybuffer'
+  });
+  // 将二进制数据转换为 Blob
+  const blob = new Blob([response.data], { type: 'image/jpeg' });
+  // 将 Blob 转换为 URL
+  const url = URL.createObjectURL(blob);
+  WxLoginimg.value = url;
+  loading.value = false;
+  // 判断ws是否链接了
+  if (ws.value) {
+    ws.value.close();
+  }
+  // websocket版
+  // ws.value = new WebSocket('ws://192.168.178.1:8880/');
+  ws.value = new WebSocket('wss://websys.aiblog.top/');
+  ws.value.onopen = function () {
+    console.log('连接成功');
+    ws.value.send(JSON.stringify({ event: 'identify', data: { identification: randomStr, clientType: 'Web' } }));
+  };
+
+
+  // 监听 websocket 消息 registrationComplete
+  ws.value.onmessage = function (event: any) {
+    console.log('接收到消息');
+    let data = JSON.parse(event.data);
+    if (data.event == 'registrationComplete') {
+      console.log('注册成功');
+      dataStore.setCookie("Token", data.data.token, 24);
+      dataStore.setCookie("refreshToken", data.data.refreshToken, 24 * 7);
+      // websocket版
+      ws.value.close();
+      router.push('/')
+    }
+  };
+
+
+
+  // //socket.io版
+  // // 连接服务器
+  // socket.connect();
+
+  // // 当连接成功后，向服务器发送消息
+  // socket.emit('identify', { identification: randomStr, clientType: 'Web' });
+
+
+  // 5分钟后刷新展示
+  setTimeout(() => {
+    overtime.value = true;
+  }, 300000);
+}
+
+const changelogin = () => {
+  if (LoginType.value == 1) {
+    LoginType.value = 2;
+  } else {
+    LoginType.value = 1;
+  }
+}
 
 const form = reactive({
   name: "",
+  email: "",
   password: "",
   remember: false,
 });
 const onSubmit = () => {
-  console.log("submit!", form.name, form.password);
-  API.UserLogin('api/login/gologin', { username: form.name, password: form.password }).then(res => {
+  console.log("submit!", form.name, form.email, form.password);
+  API.UserLogin('api/login/gologin', { username: form.name, email: form.email, password: form.password }).then(res => {
     console.log(res);
     if (res.data) {
-      dataStore.setCookie("Token", res.data.token, 1);
-      dataStore.setCookie("refreshToken", res.data.refreshToken, 24);
+      dataStore.setCookie("Token", res.data.token, 24);
+      dataStore.setCookie("refreshToken", res.data.refreshToken, 24 * 7);
+      ws.value.close();
       router.push('/')
 
     } else {
@@ -150,6 +261,7 @@ const onSubmit = () => {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  width: 100%;
 }
 
 .containleft {
@@ -199,7 +311,33 @@ const onSubmit = () => {
   font-size: 20px;
   color: #333;
   font-weight: bold;
+  margin-bottom: 20px;
 }
+
+.formtop .topitem {
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #b3b3b3;
+}
+
+.formtop .topitem:first-child {
+  border-top-left-radius: 10px;
+}
+
+.formtop .topitem:last-child {
+  border-top-right-radius: 10px;
+}
+
+.formtop .topitemed {
+  background-color: #fff;
+  border-radius: 10px;
+}
+
 
 :deep(.formbox .el-form) {
   padding: 0 20px;
@@ -330,6 +468,51 @@ const onSubmit = () => {
 
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+
+
+
+.wxLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+  min-height: 240px;
+}
+
+.loginimg {
+  width: 240px;
+  height: 240px;
+}
+
+.wxLogin .tiptext {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #0960bd;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.75)
+}
+
+
+
+
+@media screen and (max-width: 1100px) {
+  .loginbox::before {
+    margin-left: -42%;
+  }
+
+  .containleft {
+    padding-left: 20px;
+  }
 }
 
 @media screen and (max-width: 768px) {
